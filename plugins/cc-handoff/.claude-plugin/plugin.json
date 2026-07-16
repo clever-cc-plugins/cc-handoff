@@ -1,0 +1,10 @@
+{
+  "name": "cc-handoff",
+  "description": "Create and restore machine-transfer handoff summaries between Claude Code sessions",
+  "author": {
+    "name": "Michael van Laar"
+  },
+  "homepage": "https://github.com/clever-cc-plugins/cc-handoff",
+  "repository": "https://github.com/clever-cc-plugins/cc-handoff",
+  "license": "MIT"
+}
