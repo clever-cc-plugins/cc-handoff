@@ -70,12 +70,12 @@ if [[ -d "$ROOT/.claude/skills" ]]; then
   done < <(find "$ROOT/.claude/skills" -maxdepth 2 -name 'SKILL.md' -type f -print0 2>/dev/null | sort -z)
 fi
 
-# plugins/ manifests and skills
+# plugins/ manifests, skills, and hooks
 if [[ -d "$ROOT/plugins" ]]; then
   while IFS= read -r -d '' f; do
     relpath="${f#$ROOT/}"
     config_files+=("$relpath")
-  done < <(find "$ROOT/plugins" -type f \( -name 'plugin.json' -o -name 'SKILL.md' \) -print0 2>/dev/null | sort -z)
+  done < <(find "$ROOT/plugins" -type f \( -name 'plugin.json' -o -name 'SKILL.md' -o -path '*/hooks/*' \) -print0 2>/dev/null | sort -z)
 fi
 
 # .github/workflows/

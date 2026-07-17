@@ -16,8 +16,9 @@ before any Reference Documents section if one exists.
 ## Handoff
 
 Before ending a session, the user may invoke `/handoff` to create a machine-transfer summary.
-When resuming work, always check if HANDOFF.md exists in the project root. If it does, read it
-first and continue from where it left off. After confirming the context is restored, delete the file.
+On session start, a plugin hook automatically checks for HANDOFF.md, loads its contents into
+context, and deletes the file. If handoff context appears at the start of a session, continue
+from where it left off and let the user know context was restored.
 ```
 
 ## Rules
