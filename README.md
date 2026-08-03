@@ -9,16 +9,16 @@
 
 Two Claude Code skills for handing work off between machines, distributed as a Claude Code plugin.
 
-**`/handoff`** writes a concise `HANDOFF.md` summary before you switch machines or end a session — current state, modified files, test status, open TODOs, and key decisions.
+**`/cc-handoff:handoff`** writes a concise `HANDOFF.md` summary before you switch machines or end a session — current state, modified files, test status, open TODOs, and key decisions.
 
-**`/handoff-install`** documents the handoff convention in a project's `CLAUDE.md`. Pickup itself is automatic everywhere: a plugin hook checks for `HANDOFF.md` on every session start and picks up right where the last session left off.
+**`/cc-handoff:handoff-install`** documents the handoff convention in a project's `CLAUDE.md`. Pickup itself is automatic everywhere: a plugin hook checks for `HANDOFF.md` on every session start and picks up right where the last session left off.
 
 ## At a glance
 
-| Skill              | Use it when                                 | What it does                                                                                                                       |
-| ------------------ | ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| `/handoff`         | Ending a session or switching machines      | Writes `HANDOFF.md` with current state, modified files, test status, open TODOs, and key decisions                                 |
-| `/handoff-install` | Once per project, the first time you use it | Adds a `## Handoff` section to the project's `CLAUDE.md` documenting the convention (a plugin hook handles the actual read/delete) |
+| Skill                         | Use it when                                 | What it does                                                                                                                       |
+| ----------------------------- | ------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `/cc-handoff:handoff`         | Ending a session or switching machines      | Writes `HANDOFF.md` with current state, modified files, test status, open TODOs, and key decisions                                 |
+| `/cc-handoff:handoff-install` | Once per project, the first time you use it | Adds a `## Handoff` section to the project's `CLAUDE.md` documenting the convention (a plugin hook handles the actual read/delete) |
 
 ## Table of Contents
 
@@ -30,8 +30,8 @@ Two Claude Code skills for handing work off between machines, distributed as a C
     - [Keeping skills current](#keeping-skills-current)
     - [Uninstalling](#uninstalling)
   - [Usage](#usage)
-    - [`/handoff-install` — One-time setup per project](#handoff-install--one-time-setup-per-project)
-    - [`/handoff` — Before ending a session](#handoff--before-ending-a-session)
+    - [`/cc-handoff:handoff-install` — One-time setup per project](#cc-handoffhandoff-install--one-time-setup-per-project)
+    - [`/cc-handoff:handoff` — Before ending a session](#cc-handoffhandoff--before-ending-a-session)
     - [Resuming on another machine](#resuming-on-another-machine)
     - [Recommended workflow](#recommended-workflow)
   - [What `HANDOFF.md` looks like](#what-handoffmd-looks-like)
@@ -45,7 +45,7 @@ Switching machines — laptop to desktop, local to a remote box, one collaborato
 
 `cc-handoff` makes the handoff explicit and structured:
 
-- **`/handoff`** captures a snapshot at the end of a session — only the sections that have content, written specifically enough to act on ("Login endpoint returns 401 because JWT secret is missing from `.env.example`", not "auth is broken").
+- **`/cc-handoff:handoff`** captures a snapshot at the end of a session — only the sections that have content, written specifically enough to act on ("Login endpoint returns 401 because JWT secret is missing from `.env.example`", not "auth is broken").
 - A plugin hook makes the pickup automatic: at the start of every fresh session, it checks for `HANDOFF.md`, loads its contents into context, and deletes the file, so it isn't silently re-consumed by the next session on the same machine.
 
 ## Installation
@@ -57,7 +57,7 @@ Open Claude Code in any project and run:
 /plugin install cc-handoff@clever-cc-plugins
 ```
 
-That's it. Claude Code downloads the skills and makes `/handoff` and `/handoff-install` available immediately.
+That's it. Claude Code downloads the skills and makes `/cc-handoff:handoff` and `/cc-handoff:handoff-install` available immediately.
 
 > **Note:** Auto-update for third-party marketplaces is off by default — see [Keeping skills current](#keeping-skills-current) to enable it.
 
@@ -89,12 +89,12 @@ Removing the marketplace automatically uninstalls any plugins installed from it.
 
 Both skills are invoked explicitly — they don't trigger automatically from conversational hints, so a passing "let's wrap up" mid-task won't accidentally write a handoff file. Run them with their slash command when you actually mean it.
 
-### `/handoff-install` — One-time setup per project
+### `/cc-handoff:handoff-install` — One-time setup per project
 
 Run this once, in each project where you want handoff support:
 
 ```
-/handoff-install
+/cc-handoff:handoff-install
 ```
 
 The skill will:
@@ -104,12 +104,12 @@ The skill will:
 3. Add a `## Handoff` section to `CLAUDE.md`, placed after existing sections (before any Reference Documents section, if present). This section documents the convention: a plugin hook loads `HANDOFF.md` into context and deletes it automatically at session start, and Claude should continue from where the last session left off.
 4. Confirm what was changed.
 
-### `/handoff` — Before ending a session
+### `/cc-handoff:handoff` — Before ending a session
 
 Whenever you're about to switch machines, end a session, or just want to save progress:
 
 ```
-/handoff
+/cc-handoff:handoff
 ```
 
 The skill writes `HANDOFF.md` to the project root, capped at roughly 40 lines, containing only the sections that have real content:
@@ -131,10 +131,10 @@ The hook only deletes the local working-tree copy. If `HANDOFF.md` was committed
 ### Recommended workflow
 
 ```
-Once per project:  /handoff-install         ← Document the convention in CLAUDE.md (optional)
+Once per project:  /cc-handoff:handoff-install         ← Document the convention in CLAUDE.md (optional)
 
 Every session:      ... do the work ...
-End of session:     /handoff                ← Snapshot state to HANDOFF.md
+End of session:     /cc-handoff:handoff                ← Snapshot state to HANDOFF.md
                      git add -A && git commit && git push
 
 New machine:         git pull
@@ -181,7 +181,7 @@ JWTs, to keep revocation possible without a server-side session store.
 
 - Works with any programming language, framework, or project type — the skills only read and write Markdown files.
 - Requires Claude Code (CLI or VS Code extension).
-- `/handoff-install` requires an existing `CLAUDE.md` in the target project. Run `/cc-config-init` (from the [cc-config](https://github.com/clever-cc-plugins/cc-config) plugin) first if the project doesn't have one yet.
+- `/cc-handoff:handoff-install` requires an existing `CLAUDE.md` in the target project. Run `/cc-config:bootstrapping-config` (from the [cc-config](https://github.com/clever-cc-plugins/cc-config) plugin) first if the project doesn't have one yet.
 
 ## Contributing
 
