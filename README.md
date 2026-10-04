@@ -5,9 +5,7 @@
   </picture>
 </p>
 
-<img src="assets/icon.svg" align="right" width="96" height="96" alt="cc-handoff icon" />
-
-# cc-handoff
+# <img src="assets/icon.svg" width="40" height="40" align="top" alt="" />&nbsp;cc-handoff
 
 Two Claude Code skills for handing work off between machines, distributed as a Claude Code plugin.
 
