@@ -35,3 +35,4 @@ Non-obvious decisions made during this session and why.
 - Be specific. "Auth is broken" is useless. "Login endpoint returns 401 because JWT secret is missing from .env.example" is useful.
 - List actual file paths, not vague references.
 - After writing the file, remind the user to commit and push before switching machines.
+- After writing the file, ask: "Did this handoff capture what you need? If not, I will log a correction to `.claude/learnings.md`."

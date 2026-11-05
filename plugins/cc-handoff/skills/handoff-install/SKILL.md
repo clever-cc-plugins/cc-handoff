@@ -26,3 +26,4 @@ from where it left off and let the user know context was restored.
 - If CLAUDE.md does not exist, tell the user and stop. Handoff depends on a working project config.
 - If a Handoff section already exists in CLAUDE.md, tell the user and stop.
 - After adding the section, confirm what was changed.
+- Finally, ask: "Did this meet your expectations? If not, I will log a correction to `.claude/learnings.md`."
