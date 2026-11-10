@@ -7,6 +7,8 @@ allowed-tools: Read, Edit, Write, Grep
 
 # Install Handoff Support
 
+Read `../_shared/learnings-protocol.md` and follow its **Recall** section.
+
 Add the following section to the project's CLAUDE.md. Place it after existing sections,
 before any Reference Documents section if one exists.
 
@@ -26,4 +28,5 @@ from where it left off and let the user know context was restored.
 - If CLAUDE.md does not exist, tell the user and stop. Handoff depends on a working project config.
 - If a Handoff section already exists in CLAUDE.md, tell the user and stop.
 - After adding the section, confirm what was changed.
-- Finally, ask: "Did this meet your expectations? If not, I will log a correction to `.claude/learnings.md`."
+- Finally, ask: "Did this meet your expectations? If not, tell me what to change."
+- If the user provides a correction, read `../_shared/learnings-protocol.md` and record it per its **Writing** section (tag `[cc-handoff:handoff-install]`, source `corrected`), then follow its **Confirming** section.

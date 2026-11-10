@@ -35,5 +35,4 @@ When compacting, preserve the full list of modified files, test status, and open
 
 ## Learnings
 
-When the user corrects a mistake or points out a recurring issue, append a one-line
-summary to .claude/learnings.md. Don't modify CLAUDE.md directly.
+When the user corrects a mistake or points out a recurring issue, record a one-line entry in .claude/learnings.md by plugins/cc-handoff/skills/_shared/learnings-protocol.md: add a source marker, and replace a contradicted entry instead of appending a second one. Don't modify CLAUDE.md directly.

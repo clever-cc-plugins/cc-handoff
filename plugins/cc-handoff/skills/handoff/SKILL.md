@@ -6,6 +6,8 @@ disable-model-invocation: true
 
 # Handoff
 
+Read `../_shared/learnings-protocol.md` and follow its **Recall** section.
+
 Write a file called HANDOFF.md in the project root. Keep it concise — under 40 lines.
 
 ## Structure
@@ -35,4 +37,5 @@ Non-obvious decisions made during this session and why.
 - Be specific. "Auth is broken" is useless. "Login endpoint returns 401 because JWT secret is missing from .env.example" is useful.
 - List actual file paths, not vague references.
 - After writing the file, remind the user to commit and push before switching machines.
-- After writing the file, ask: "Did this handoff capture what you need? If not, I will log a correction to `.claude/learnings.md`."
+- After writing the file, ask: "Did this handoff capture what you need? If not, tell me what to change."
+- If the user provides a correction, read `../_shared/learnings-protocol.md` and record it per its **Writing** section (tag `[cc-handoff:handoff]`, source `corrected`), then follow its **Confirming** section.
