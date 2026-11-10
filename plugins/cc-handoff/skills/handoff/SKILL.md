@@ -2,6 +2,7 @@
 name: handoff
 description: Create a handoff summary for continuing work on another machine. Use when the user says handoff, end session, switch machine, wrap up, save progress, or hand off.
 disable-model-invocation: true
+allowed-tools: Read, Write(HANDOFF.md), Write(.claude/learnings.md), Edit(.claude/learnings.md)
 ---
 
 # Handoff
