@@ -22,7 +22,7 @@ Reusable Claude Code skills for handing off work between machines, distributed a
 | `plugins/cc-handoff/skills/handoff/SKILL.md`         | Skill: Write a HANDOFF.md summary before switching machines                             |
 | `scripts/sync-config-table.sh`                       | Keeps Key Config Files table in sync on each commit                                     |
 
-<!-- cc-config: last-optimize-run: 2026-11-05 4fca6dc2ac2b65b55de7bd5c68ba072f89a62a02 -->
+<!-- cc-config: last-optimize-run: 2026-11-12 c6f902b54ea2f030fc9ed4caec9b859b6db3efb1 -->
 
 ## Don't
 
